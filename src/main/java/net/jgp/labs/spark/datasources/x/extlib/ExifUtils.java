@@ -24,7 +24,7 @@ import com.drew.metadata.jpeg.JpegDirectory;
 
 public class ExifUtils {
     private static transient Logger log = LoggerFactory.getLogger(ExifUtils.class);
-
+    
     public static PhotoMetadata processFromFilename(String absolutePathToPhoto) {
         PhotoMetadata photo = new PhotoMetadata();
         photo.setFilename(absolutePathToPhoto);

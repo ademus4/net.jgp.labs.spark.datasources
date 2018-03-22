@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.jgp.labs.spark.datasources.x.ds.exif;
+package net.jgp.labs.spark.datasources.x.ds.hipo;
 
 import org.apache.spark.sql.sources.DataSourceRegister;
 
@@ -9,7 +9,7 @@ import org.apache.spark.sql.sources.DataSourceRegister;
  * @author jgp
  *
  */
-public class DefaultSource22 extends ExifDirectoryDataSource implements DataSourceRegister {
+public class DefaultSource22 extends HipoDataSource implements DataSourceRegister {
 
     /*
      * (non-Javadoc)
@@ -18,7 +18,7 @@ public class DefaultSource22 extends ExifDirectoryDataSource implements DataSour
      */
     @Override
     public String shortName() {
-        return "exif";
+        return "hipo";
     }
 
 }

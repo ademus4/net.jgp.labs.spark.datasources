@@ -1,10 +1,8 @@
-package net.jgp.labs.spark.datasources.x.ds.exif;
+package net.jgp.labs.spark.datasources.x.ds.hipo;
 
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.sources.BaseRelation;
 import org.apache.spark.sql.sources.RelationProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import net.jgp.labs.spark.datasources.x.extlib.RecursiveExtensionFilteredLister;
 import net.jgp.labs.spark.datasources.x.utils.K;
@@ -12,25 +10,22 @@ import net.jgp.labs.spark.datasources.x.utils.K;
 import static scala.collection.JavaConverters.mapAsJavaMapConverter;
 import scala.collection.immutable.Map;
 
-public class ExifDirectoryDataSource implements RelationProvider {
-    private static transient Logger log = LoggerFactory
-            .getLogger(ExifDirectoryDataSource.class);
+public class HipoDataSource implements RelationProvider {
 
     @Override
     public BaseRelation createRelation(
             SQLContext sqlContext,
             Map<String, String> params) {
-        log.debug("-> createRelation()");
 
         java.util.Map<String, String> javaMap = mapAsJavaMapConverter(params).asJava();
 
-        ExifDirectoryRelation br = new ExifDirectoryRelation();
+        HipoRelation br = new HipoRelation();
         br.setSqlContext(sqlContext);
         RecursiveExtensionFilteredLister photoLister = new RecursiveExtensionFilteredLister();
         for (java.util.Map.Entry<String, String> entry : javaMap.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            log.debug("[{}] --> [{}]", key, value);
+
             switch (key) {
             case K.PATH:
                 photoLister.setPath(value);
@@ -47,9 +42,6 @@ public class ExifDirectoryDataSource implements RelationProvider {
                 try {
                     limit = Integer.valueOf(value);
                 } catch (NumberFormatException e) {
-                    log.error(
-                            "Illegal value for limit, exting a number, got: {}. {}. Ignoring parameter.",
-                            value, e.getMessage());
                     limit = -1;
                 }
                 photoLister.setLimit(limit);
@@ -62,7 +54,6 @@ public class ExifDirectoryDataSource implements RelationProvider {
                 break;
 
             default:
-                log.warn("Unrecognized parameter: [{}].", key);
                 break;
             }
         }
