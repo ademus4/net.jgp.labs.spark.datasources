@@ -19,7 +19,6 @@ public class HipoReadApp {
         
         df.collect();
         df.cache();
-        System.out.println("I have imported " + df.count() + " photos.");
         df.printSchema();
         df.show(5);
         
