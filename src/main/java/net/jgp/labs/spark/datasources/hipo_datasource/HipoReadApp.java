@@ -19,8 +19,9 @@ public class HipoReadApp {
         
         df.collect();
         df.cache();
-        df.printSchema();
+        Dataset df_results = df.filter("charge = 1");
         df.show(5);
+        df_results.show(5);
         
         return true;
     }

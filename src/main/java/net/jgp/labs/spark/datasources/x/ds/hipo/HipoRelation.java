@@ -2,8 +2,8 @@ package net.jgp.labs.spark.datasources.x.ds.hipo;
 
 import java.io.Serializable;
 import java.util.List;
-import net.jgp.labs.spark.datasources.x.extlib.CSVUtils;
 import net.jgp.labs.spark.datasources.x.extlib.EventData;
+import net.jgp.labs.spark.datasources.x.extlib.HipoUtils;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -28,9 +28,10 @@ public class HipoRelation extends BaseRelation
     public RDD<Row> buildScan() {
         schema();
         
-        String csvFile = "test.txt";
-        List<EventData> events = CSVUtils.processFromFilename(csvFile);
-
+        String hipoFile = "/home/adam/uni/jlab/data/clasrun_2475.hipo.2";
+        
+        List<EventData> events = HipoUtils.processFromFilename(hipoFile);    
+        
         @SuppressWarnings("resource")
         JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
         JavaRDD<Row> rowRDD = sparkContext.parallelize(events)

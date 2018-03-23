@@ -5,34 +5,34 @@ import java.io.Serializable;
 public class EventData implements Serializable {
     private static final long serialVersionUID = -2589804417011601051L;
     
-    private Float paramA;
-    private Float paramB;
-    private Float paramC;
+    private int eventNumber;
+    private int pid;
+    private int charge;
     
     // getters
-    public Float getParamA() {
-        return paramA;
+    public int getEventNumber() {
+        return eventNumber;
     }
     
-    public Float getParamB() {
-        return paramB;
+    public int getPID() {
+        return pid;
     }
 
-    public Float getParamC() {
-        return paramC;
+    public int getCharge() {
+        return charge;
     }
     
     // setters
-    public void setParamA(Float x) {
-        this.paramA = x;
+    public void setEventNumber(int x) {
+        this.eventNumber = x;
     }
     
-    public void setParamB(Float x) {
-        this.paramB = x;
+    public void setPID(int x) {
+        this.pid = x;
     }
     
-    public void setParamC(Float x) {
-        this.paramC = x;
+    public void setCharge(int x) {
+        this.charge = x;
     }
     
 }
