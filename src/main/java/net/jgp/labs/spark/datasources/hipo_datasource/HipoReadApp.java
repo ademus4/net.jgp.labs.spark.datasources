@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.datasources.l100_photo_datasource;
+package net.jgp.labs.spark.datasources.hipo_datasource;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
