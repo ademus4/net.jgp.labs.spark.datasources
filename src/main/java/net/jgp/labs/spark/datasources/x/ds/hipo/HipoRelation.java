@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.datasources.x.ds.hipo;
+    package net.jgp.labs.spark.datasources.x.ds.hipo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,7 +28,7 @@ public class HipoRelation extends BaseRelation
     public RDD<Row> buildScan() {
         schema();
         
-        String hipoFile = "/home/adam/uni/jlab/data/clasrun_2475.hipo.2";
+        String hipoFile = "/home/adam/uni/jlab/data/clas_dis_mcdata.hipo";
         
         List<EventData> events = HipoUtils.processFromFilename(hipoFile);    
         
