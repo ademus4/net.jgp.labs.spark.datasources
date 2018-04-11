@@ -8,23 +8,21 @@ public class HipoReadApp {
     
     public static void main(String[] args) {
         HipoReadApp app = new HipoReadApp();
-        app.start();
+        app.start(args[0]);
     }
     
     // use "spark://devicename:8888" if running externally
-    private boolean start() {
+    private boolean start(String path) {
         SparkSession spark = SparkSession.builder()
                 .appName("HIPO to Dataset")
                 .master("local[*]").getOrCreate();
                 
-        Dataset<Row> df = spark.read().format("hipo").load();
+        Dataset<Row> df = spark
+                .read()
+                .format("hipo")
+                .load(path);
         
-        df.collect();
-        df.cache();
-        Dataset df_results = df.filter("charge = 1");
-        df.show(5);
-        df_results.show(5);
-        
+        df.show(5);       
         return true;
     }
 }

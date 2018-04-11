@@ -11,11 +11,8 @@ import org.apache.spark.sql.types.DataType;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class SparkBeanUtils {
-    private static transient Logger log = LoggerFactory.getLogger(SparkBeanUtils.class);
 
     public static Schema getSchemaFromBean(Class<?> c) {
         Schema schema = new Schema();
@@ -39,16 +36,11 @@ public class SparkBeanUtils {
             boolean nullable;
             SparkColumn sparkColumn = method.getAnnotation(SparkColumn.class);
             if (sparkColumn == null) {
-                log.debug("No annotation for method {}", methodName);
                 columnName = "";
                 dataType = getDataTypeFromReturnType(method);
                 nullable = true;
             } else {
                 columnName = sparkColumn.name();
-                log.debug("Annotation for method {}, column name is {}",
-                        methodName,
-                        columnName);
-
                 switch (sparkColumn.type().getSimpleName()) {
                 case "StringType":
                     dataType = DataTypes.StringType;
@@ -90,8 +82,6 @@ public class SparkBeanUtils {
                     dataType = DataTypes.NullType;
                     break;
                 default:
-                    log.debug("Will infer data type from return type for column {}",
-                            columnName);
                     dataType = getDataTypeFromReturnType(method);
                 }
 
@@ -141,7 +131,6 @@ public class SparkBeanUtils {
         case "Object":
             return DataTypes.BinaryType;
         default:
-            log.debug("Using default for type [{}]", typeName);
             return DataTypes.BinaryType;
         }
     }

@@ -26,7 +26,7 @@ public class EventData implements Serializable {
     public int getPID() {
         return pid;
     }
-    
+
     public float getPX() {
         return px;
     }
@@ -66,7 +66,7 @@ public class EventData implements Serializable {
     public int getStatus() {
         return status;
     }
-    
+
     // setters
     public void setEventNumber(int eventNumber) {
         this.eventNumber = eventNumber;
@@ -75,7 +75,7 @@ public class EventData implements Serializable {
     public void setPID(int pid) {
         this.pid = pid;
     }
-    
+
     public void setPX(float px) {
         this.px = px;
     }
